@@ -17,7 +17,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
   const [activeTab, setActiveTab] = useState("simplify");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newAccountPassword, setNewAccountPassword] = useState("");
@@ -138,23 +137,6 @@ function App() {
       alert("If your email is registered, a password reset link has been sent.");
     } catch (err) {
       alert(getErrorMessage(err, "Unable to send reset link right now."));
-    }
-  };
-
-  const handleReset = async (token, newPassword) => {
-    try {
-      if (!newPassword || newPassword.length < 8) {
-        alert("Password must be at least 8 characters.");
-        return;
-      }
-
-      await axios.post(
-        `${API_BASE_URL}/api/auth/reset-password/${token}`,
-        { password: newPassword }
-      );
-      alert("Password reset successful");
-    } catch (err) {
-      alert(getErrorMessage(err, "Password reset failed."));
     }
   };
 
