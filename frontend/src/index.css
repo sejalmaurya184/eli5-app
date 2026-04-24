@@ -1,0 +1,27 @@
+/* Reset default browser styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+}
+
+/* Smooth rendering */
+* {
+  box-sizing: border-box;
+}
+
+/* Button hover effect (global) */
+button:hover {
+  opacity: 0.9;
+}
+
+/* Scroll styling (optional) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
