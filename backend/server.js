@@ -11,6 +11,8 @@ const allowedOrigins = [
   "http://localhost:3000"
 ];
 
+app.set("trust proxy", 1);
+
 // ✅ 2. Middleware
 app.use(cors({
   origin: (origin, callback) => {

@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:5000";
+const BACKEND_URL = process.env.BACKEND_URL;
 const MIN_PASSWORD_LENGTH = 8;
 
 // REGISTER
@@ -54,7 +54,9 @@ router.post("/register", async (req, res) => {
 
     await user.save();
 
-    const verifyURL = `${BACKEND_URL}/api/auth/verify/${token}`;
+    const requestBaseUrl = `${req.protocol}://${req.get("host")}`;
+    const backendBaseUrl = BACKEND_URL || requestBaseUrl;
+    const verifyURL = `${backendBaseUrl.replace(/\/+$/, "")}/api/auth/verify/${token}`;
     await transporter.sendMail({
       to: normalizedEmail,
       subject: "Verify your email",
